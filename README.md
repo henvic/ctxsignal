@@ -1,6 +1,6 @@
 # ctxsignal
 
-[![GoDoc](https://godoc.org/github.com/henvic/ctxsignal?status.svg)](https://godoc.org/github.com/henvic/ctxsignal) [![Build Status](https://travis-ci.com/henvic/ctxsignal.svg?branch=master)](https://travis-ci.com/henvic/ctxsignal) [![Coverage Status](https://coveralls.io/repos/henvic/ctxsignal/badge.svg)](https://coveralls.io/r/henvic/ctxsignal) [![codebeat badge](https://codebeat.co/badges/b1aeaafc-7c28-4230-9867-8f88f10404fe)](https://codebeat.co/projects/github-com-henvic-ctxsignal-master) [![Go Report Card](https://goreportcard.com/badge/github.com/henvic/ctxsignal)](https://goreportcard.com/report/github.com/henvic/ctxsignal)
+[![GoDoc](https://godoc.org/github.com/henvic/ctxsignal?status.svg)](https://godoc.org/github.com/henvic/ctxsignal) [![Build Status](https://travis-ci.org/henvic/ctxsignal.svg?branch=master)](https://travis-ci.org/henvic/ctxsignal) [![Coverage Status](https://coveralls.io/repos/henvic/ctxsignal/badge.svg)](https://coveralls.io/r/henvic/ctxsignal) [![codebeat badge](https://codebeat.co/badges/b1aeaafc-7c28-4230-9867-8f88f10404fe)](https://codebeat.co/projects/github-com-henvic-ctxsignal-master) [![Go Report Card](https://goreportcard.com/badge/github.com/henvic/ctxsignal)](https://goreportcard.com/report/github.com/henvic/ctxsignal)
 
 Package ctxsignal can be used to create contexts cancelable by system signals.
 
