@@ -12,6 +12,7 @@ import (
 	"errors"
 	"os"
 	"os/signal"
+	"sync"
 	"syscall"
 )
 
@@ -33,7 +34,10 @@ func WithSignals(parent context.Context, signals ...os.Signal) (context.Context,
 func withSignalsHandler(ctx context.Context, cancel context.CancelFunc, s chan os.Signal, v *sig) {
 	select {
 	case sig := <-s:
+		v.m.Lock()
 		v.t = sig
+		v.m.Unlock()
+
 		signal.Stop(s)
 		cancel()
 		return
@@ -45,6 +49,7 @@ func withSignalsHandler(ctx context.Context, cancel context.CancelFunc, s chan o
 type ctxSig struct{}
 
 type sig struct {
+	m sync.RWMutex
 	t os.Signal
 }
 
@@ -56,8 +61,14 @@ func WithTermination(ctx context.Context) (context.Context, context.CancelFunc) 
 // Closed gets the signal that closed a context channel.
 func Closed(ctx context.Context) (os.Signal, error) {
 	if v := ctx.Value(ctxSig{}); v != nil {
-		if sv, ok := v.(*sig); ok && sv.t != nil {
-			return sv.t, nil
+		if sv, ok := v.(*sig); ok {
+			sv.m.RLock()
+			var t = sv.t
+			sv.m.RUnlock()
+
+			if t != nil {
+				return t, nil
+			}
 		}
 	}
 
